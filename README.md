@@ -1,4 +1,4 @@
-# Full-Chain SOC Detection Lab: Microsoft Sentinel
+# Full-Chain SOC Detection Lab: Sysmon to Sentinel Detection Pipeline
 
 ### An end-to-end security operations lab — from infrastructure deployment through attack simulation, detection engineering, and incident investigation — built entirely on Microsoft Sentinel.
 
