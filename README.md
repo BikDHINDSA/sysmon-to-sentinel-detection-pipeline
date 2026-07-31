@@ -16,9 +16,9 @@ The environment was deployed with no public-facing RDP exposure at any point —
 
 ## Architecture
 
-<img src="./01-environment-setup/screenshots/soc_lab_network_topology.png" alt="Network Topology" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./01-environment-setup/Screenshots/soc_lab_network_topology.png" alt="Network Topology" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
-<img src="./01-environment-setup/screenshots/soc_lab_detection_pipeline.png" alt="Detection Pipeline" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./01-environment-setup/Screenshots/soc_lab_detection_pipeline.png" alt="Detection Pipeline" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 **Network design:** the target VM has no public IP. Azure Bastion, deployed in its own dedicated subnet, is the sole internet-facing resource in the environment. The VM's NSG permits inbound RDP exclusively from the Bastion subnet.
 
