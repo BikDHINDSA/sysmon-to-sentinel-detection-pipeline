@@ -10,7 +10,7 @@ Two independent telemetry sources — native Windows Security auditing and Sysmo
 
 ## Rules Overview
 
-<img src="./screenshots/all-rules-overview.png" alt="All Active Analytics Rules" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/all-rules-overview.png" alt="All Active Analytics Rules" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 | Rule Name | MITRE ATT&CK | Severity | Table |
 | :--- | :--- | :--- | :--- |
@@ -34,13 +34,13 @@ SecurityEvent
 | project TimeGenerated, Computer, Account, CommandLine, ParentProcessName
 ```
 
-<img src="./screenshots/rule-wizard-set-logic-download-cradle.png" alt="Rule 1 - Set Rule Logic" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/rule-wizard-set-logic-download-cradle.png" alt="Rule 1 - Set Rule Logic" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
-<img src="./screenshots/rule-powershell-download-cradle.png" alt="Rule 1 - Review and Create" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/rule-powershell-download-cradle.png" alt="Rule 1 - Review and Create" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 **Query validation (prior to rule creation):**
 
-<img src="./screenshots/query-test-download-cradle-securityevent.png" alt="Rule 1 - Manual Query Validation, SecurityEvent" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/query-test-download-cradle-securityevent.png" alt="Rule 1 - Manual Query Validation, SecurityEvent" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 A parallel query against the Sysmon-sourced `Event` table was also validated, confirming the same activity independently of native Windows auditing:
 
@@ -54,7 +54,7 @@ Event
 | project TimeGenerated, Computer, CommandLine, ParentCommandLine
 ```
 
-<img src="./screenshots/query-test-download-cradle-sysmon.png" alt="Rule 1 - Manual Query Validation, Sysmon" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/query-test-download-cradle-sysmon.png" alt="Rule 1 - Manual Query Validation, Sysmon" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ---
 
@@ -75,11 +75,11 @@ Event
 
 **Note:** this registry subtree is also written to by legitimate Windows components — application inventory telemetry from `svchost.exe` was observed in this environment during testing. The `where TargetObject has @"CurrentVersion\Run"` filter is deliberately scoped to the Run key path itself, rather than alerting on every Event ID 13 write, to exclude this native background noise.
 
-<img src="./screenshots/rule-registry-run-key-persistence.png" alt="Rule 2 - Review and Create" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/rule-registry-run-key-persistence.png" alt="Rule 2 - Review and Create" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 **Query validation:**
 
-<img src="./screenshots/query-test-registry-runkey.png" alt="Rule 2 - Manual Query Validation" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/query-test-registry-runkey.png" alt="Rule 2 - Manual Query Validation" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ---
 
@@ -108,11 +108,11 @@ Event
 
 **Note:** Event ID 4698 requires the `Other Object Access Events` audit subcategory, which is not enabled by default (see Phase 1). It also requires `SCENoApplyLegacyAuditPolicy` to be set — without it, Windows can silently ignore the subcategory setting entirely, producing no 4698 events despite `auditpol` reporting success.
 
-<img src="./screenshots/rule-scheduled-task-creation.png" alt="Rule 3 - Review and Create" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/rule-scheduled-task-creation.png" alt="Rule 3 - Review and Create" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 **Query validation:**
 
-<img src="./screenshots/query-test-scheduled-task-sysmon.png" alt="Rule 3 - Manual Query Validation, Sysmon" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/query-test-scheduled-task-sysmon.png" alt="Rule 3 - Manual Query Validation, Sysmon" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ---
 
@@ -128,11 +128,11 @@ SecurityEvent
 | where count_ >= 3
 ```
 
-<img src="./screenshots/rule-discovery-command-sequence.png" alt="Rule 4 - Review and Create" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/rule-discovery-command-sequence.png" alt="Rule 4 - Review and Create" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 **Query validation:**
 
-<img src="./screenshots/query-test-discovery-commands.png" alt="Rule 4 - Manual Query Validation" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/query-test-discovery-commands.png" alt="Rule 4 - Manual Query Validation" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ---
 
@@ -140,9 +140,9 @@ SecurityEvent
 
 Before rule development began, both log sources were independently confirmed as flowing correctly:
 
-<img src="./screenshots/verify-sysmon-log-flow.png" alt="Sysmon Log Flow Verification" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/verify-sysmon-log-flow.png" alt="Sysmon Log Flow Verification" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
-<img src="./screenshots/verify-securityevent-log-flow.png" alt="Security Event Log Flow Verification" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/verify-securityevent-log-flow.png" alt="Security Event Log Flow Verification" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ## Phase 3 Completion Criteria
 
