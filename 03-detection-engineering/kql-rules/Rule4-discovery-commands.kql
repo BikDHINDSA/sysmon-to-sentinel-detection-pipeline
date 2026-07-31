@@ -1,0 +1,5 @@
+SecurityEvent
+| where EventID == 4688
+| where CommandLine has_any ("whoami", "net user", "net localgroup", "systeminfo", "tasklist", "netstat")
+| summarize count(), make_set(CommandLine) by Computer, Account, bin(TimeGenerated, 5m)
+| where count_ >= 3

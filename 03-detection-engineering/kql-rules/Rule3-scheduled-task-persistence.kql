@@ -1,0 +1,8 @@
+Event
+| where Source == "Microsoft-Windows-Sysmon"
+| where EventID == 1
+| extend Image = extract(@'Name="Image">([^<]+)<', 1, EventData)
+| extend CommandLine = extract(@'Name="CommandLine">([^<]+)<', 1, EventData)
+| extend ParentImage = extract(@'Name="ParentImage">([^<]+)<', 1, EventData)
+| where Image has "schtasks.exe" or CommandLine has "schtasks"
+| project TimeGenerated, Computer, Image, CommandLine, ParentImage

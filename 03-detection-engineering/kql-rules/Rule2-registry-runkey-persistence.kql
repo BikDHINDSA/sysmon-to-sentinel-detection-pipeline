@@ -1,0 +1,8 @@
+Event
+| where Source == "Microsoft-Windows-Sysmon"
+| where EventID == 13
+| extend TargetObject = extract(@'Name="TargetObject">([^<]+)<', 1, EventData)
+| extend Details = extract(@'Name="Details">([^<]+)<', 1, EventData)
+| extend Image = extract(@'Name="Image">([^<]+)<', 1, EventData)
+| where TargetObject has @"CurrentVersion\Run"
+| project TimeGenerated, Computer, Image, TargetObject, Details

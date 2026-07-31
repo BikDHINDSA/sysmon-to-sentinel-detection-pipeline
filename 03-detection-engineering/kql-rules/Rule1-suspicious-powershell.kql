@@ -1,0 +1,7 @@
+Event
+| where Source == "Microsoft-Windows-Sysmon"
+| where EventID == 1
+| where RenderedDescription has "DownloadString" or RenderedDescription has "IEX"
+| extend CommandLine = extract(@"CommandLine:\s*(.*?)(\r\n|\n|$)", 1, RenderedDescription)
+| extend ParentCommandLine = extract(@"ParentCommandLine:\s*(.*?)(\r\n|\n|$)", 1, RenderedDescription)
+| project TimeGenerated, Computer, CommandLine, ParentCommandLine
