@@ -14,7 +14,7 @@ Direct RDP exposure to the public internet is eliminated. The Windows target hos
 
 The target VM's Network Security Group (NSG) permits RDP only from the dedicated Azure Bastion Subnet address range.
 
-<img src="./screenshots/soc_lab_network_topology.png" alt="Azure Network Architecture Map" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/soc_lab_network_topology.png" alt="Azure Network Architecture Map" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ### 2. Split-Stream Telemetry Architecture
 
@@ -30,7 +30,7 @@ The Sysmon event channel used by the lab is:
 
 ```Microsoft-Windows-Sysmon/Operational```
 
-<img src="./screenshots/soc_lab_detection_pipeline.png" alt="Telemetry Pipeline Ingestion Flow" width="500" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/soc_lab_detection_pipeline.png" alt="Telemetry Pipeline Ingestion Flow" width="500" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ## Step-by-Step Cloud Infrastructure Deployment
 
@@ -47,7 +47,7 @@ Verify the active subscription and signed-in identity before continuing:
 
 ```az account show --query "{subscriptionId:id, tenantId:tenantId, user:user.name}" -o table```
 
-<img src="./screenshots/cli-set-variables.png" alt="Context Variable Configurations" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/cli-set-variables.png" alt="Context Variable Configurations" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ### 2. Resource Group & CLI Context Setup
 
@@ -60,7 +60,7 @@ az configure --defaults group=rg-soc-capstone location=centralus
 
 The resource group provides the management boundary for the lab's Azure resources.
 
-<img src="./screenshots/cli-resource-group-and-defaults.png" alt="Resource Group Context Map" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/cli-resource-group-and-defaults.png" alt="Resource Group Context Map" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ### 3. Least-Privilege Identity Management (RBAC)
 
@@ -76,7 +76,7 @@ These assignments provide the management-plane permissions required for the lab 
 
 **Security note: RBAC assignments should be scoped as narrowly as practical. If a narrower resource-level scope is sufficient for a particular operation, that scope should be preferred.**
 
-<img src="./screenshots/cli-role-assignments.png" alt="RBAC Mapping Log" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/cli-role-assignments.png" alt="RBAC Mapping Log" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ### 4. Dedicated Azure Bastion Subnet
 
@@ -90,7 +90,7 @@ az network vnet subnet create \
 ```
 The subnet is reserved exclusively for Azure Bastion infrastructure.
 
-<img src="./screenshots/cli-bastion-subnet-created.png" alt="Azure Bastion Subnet Configuration" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/cli-bastion-subnet-created.png" alt="Azure Bastion Subnet Configuration" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ### 5. Private Windows Target Host Provisioning
 
@@ -110,7 +110,7 @@ The administrator password is intentionally represented as a placeholder in this
 
 The VM receives a private address from the target subnet and has no direct public network interface.
 
-<img src="./screenshots/cli-vm-created.png" alt="Compute Resource Generation" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/cli-vm-created.png" alt="Compute Resource Generation" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ### 6. Network Security Group Inbound Hardening
 
@@ -156,7 +156,7 @@ az network nsg rule show \
   -o table
 ```
 
-<img src="./screenshots/cli-nsg-rule-rdp-from-bastion.png" alt="NSG Ingress Hardening Filtering" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/cli-nsg-rule-rdp-from-bastion.png" alt="NSG Ingress Hardening Filtering" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ### 7. Bastion Public IP Provisioning
 
@@ -186,7 +186,7 @@ SKU: Standard
 
 The Azure CLI displayed a warning concerning a future change to the default zone behavior for Standard SKU public IP addresses. This warning did not indicate a deployment failure.
 
-<img src="./screenshots/cli-bastion-public-ip-created.png" alt="Bastion Public IP Provisioning" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/cli-bastion-public-ip-created.png" alt="Bastion Public IP Provisioning" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ### 8. Azure Bastion Ingress Gateway Construction
 
@@ -203,7 +203,7 @@ az network bastion create \
 
 Administrative access to the Windows target is subsequently performed through the Bastion service rather than by exposing RDP directly to the internet.
 
-<img src="./screenshots/cli-bastion-create-command.png" alt="Bastion Deployment Command Init" width="550" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/cli-bastion-create-command.png" alt="Bastion Deployment Command Init" width="550" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ### 9. Log Analytics Workspace Creation & Daily Ingestion Safeguard
 
@@ -241,7 +241,7 @@ az monitor log-analytics workspace show \
   -o table
 ```
 
-<img src="./screenshots/cli-workspace-daily-cap.png" alt="Log Analytics Workspace and Daily Ingestion Cap Verification" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/cli-workspace-daily-cap.png" alt="Log Analytics Workspace and Daily Ingestion Cap Verification" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ### 10. Microsoft Sentinel Onboarding
 
@@ -259,7 +259,7 @@ az sentinel onboarding-state create \
 
 This establishes the Sentinel security monitoring layer over the Log Analytics workspace.
 
-<img src="./screenshots/cli-sentinel-enabled.png" alt="Sentinel Platform Workspace Onboarding" width="1000" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/cli-sentinel-enabled.png" alt="Sentinel Platform Workspace Onboarding" width="1000" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ----
 
@@ -348,9 +348,9 @@ Run from an elevated PowerShell session:
   -i "$LabRoot\sysmonconfig-export.xml"
 ```
 
-<img src="./screenshots/sysmon-download-commands.png" alt="Sysmon Configuration Setup" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/sysmon-download-commands.png" alt="Sysmon Configuration Setup" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
-<img src="./screenshots/sysmon-install-output.png" alt="Sysmon Service Initialization Progress" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/sysmon-install-output.png" alt="Sysmon Service Initialization Progress" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ### 3. Sysmon Service & Configuration Validation
 
@@ -360,7 +360,7 @@ Confirm that the Sysmon service is running:
 Get-Service -Name "Sysmon64"
 ```
 
-<img src="./screenshots/sysmon-service-running.png" alt="Sysmon Service Validation" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/sysmon-service-running.png" alt="Sysmon Service Validation" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 Confirm the installed Sysmon version:
 
