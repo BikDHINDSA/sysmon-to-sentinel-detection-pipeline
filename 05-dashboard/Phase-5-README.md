@@ -10,7 +10,7 @@ Individual analytics rules and incident queues demonstrate that detection works;
 
 **Description (as displayed in the workbook):** *Detection coverage across a simulated attack chain: initial execution, persistence, and discovery. Built on dual telemetry sources (Windows Security auditing + Sysmon), mapped to MITRE ATT&CK.*
 
-<img src="./screenshots/workbook-dashboard-final.png" alt="SOC Capstone Attack Detection Dashboard" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/workbook-dashboard-final.png" alt="SOC Capstone Attack Detection Dashboard" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ### What the dashboard shows
 
