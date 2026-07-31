@@ -16,9 +16,9 @@ Following the Phase 2 attack simulation (including the re-run of each stage afte
 
 Each incident maps 1:1 to a single triggering alert (Active alerts: 1/1 across all incidents), consistent with the rules' "trigger an alert for each event" grouping configuration rather than correlating multiple alerts into a single incident.
 
-<img src="./screenshots/incidents-list-part1.png" alt="Incident Queue, Part 1" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/incidents-list-part1.png" alt="Incident Queue, Part 1" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
-<img src="./screenshots/incidents-list-part2.png" alt="Incident Queue, Part 2" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/incidents-list-part2.png" alt="Incident Queue, Part 2" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 ## Why incident count exceeds rule count
 
